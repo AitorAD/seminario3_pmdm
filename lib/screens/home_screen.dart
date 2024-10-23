@@ -12,10 +12,13 @@ class HomeScreen extends StatelessWidget {
           Icon(Icons.search_outlined)
         ],
       ),
-      body: Column(
-        children: [
-          CardSwiper()
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CardSwiper(),
+            MovieSlider()
+          ],
+        ),
       )
     );
   }
