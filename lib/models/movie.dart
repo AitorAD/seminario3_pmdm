@@ -24,6 +24,14 @@ class Movie {
     }
   }
 
+  String get getfullBackdropPath {
+    if (this.backdropPath != null) {
+      return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
+    } else {
+      return 'https://i.stack.imgur.com/GNhxO.png';
+    }
+  }
+
   Movie({
     required this.adult,
     this.backdropPath,
