@@ -38,12 +38,15 @@ class _PosterAndTitle extends StatelessWidget {
       padding: EdgeInsets.only(left: 20, right: 20),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage(movie.getfullPosterImg),
-              height: 150,
+          Hero(
+            tag: movie.uniqueId!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: FadeInImage(
+                placeholder: AssetImage('assets/no-image.jpg'),
+                image: NetworkImage(movie.getfullPosterImg),
+                height: 150,
+              ),
             ),
           ),
           SizedBox(width: 20),

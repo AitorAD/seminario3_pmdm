@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class Movie {
+  String? uniqueId;
   bool adult;
   String? backdropPath;
   List<int> genreIds;
@@ -33,6 +34,7 @@ class Movie {
   }
 
   Movie({
+    this.uniqueId,
     required this.adult,
     this.backdropPath,
     required this.genreIds,
@@ -51,6 +53,17 @@ class Movie {
 
   factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
+  static DateTime? parseReleaseDate(String? dateStr) {
+    if (dateStr == null || dateStr.isEmpty) return null;
+
+    try {
+      return DateTime.parse(dateStr);
+    } catch (e) {
+      print('Error parsing release_date: $dateStr - Error: $e');
+      return null;
+    }
+  }
+
   factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
@@ -61,7 +74,7 @@ class Movie {
         overview: json["overview"],
         popularity: json["popularity"]?.toDouble(),
         posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
+        releaseDate: parseReleaseDate(json["release_date"]),
         title: json["title"],
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
