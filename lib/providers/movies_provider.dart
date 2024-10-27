@@ -56,6 +56,25 @@ class MoviesProvider extends ChangeNotifier {
     return searchResponse.results;
   }
 
+  Future<List<Movie>> getMoviesByActor(int actorId) async {
+    final url = Uri.https(_baseUrl, '3/person/$actorId/movie_credits', {
+      'api_key': _apikey,
+      'language': _language,
+    });
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      List<Movie> movies =
+          (data['cast'] as List).map((item) => Movie.fromMap(item)).toList();
+      return movies;
+    } else {
+      throw Exception(
+          'Error al cargar las películas del actor: ${response.statusCode}');
+    }
+  }
+
   Future<List<Cast>> getMoviesCast(int movieId) async {
     if (moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
     final jsonData = await _getJsonData('3/movie/$movieId/credits');

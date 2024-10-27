@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seminario_3/providers/movies_provider.dart';
+import 'package:seminario_3/screens/actor_screen.dart';
 import 'package:seminario_3/screens/screens.dart';
 
 void main() => runApp(AppState());
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home_screen': (_) => HomeScreen(),
         'details_screen': (_) => DetailsScreen(),
+        'actor_screen': (_) => ActorScreen(),
       },
     );
   }
